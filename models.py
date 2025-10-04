@@ -25,10 +25,11 @@ class User(UserMixin):
         # consulta por id
         conn = get_db_connection()
         cursor = conn.cursor(dictionary=True)
-        cursor.execute("select * from usuarios where id=%s", (user_id,))
+        cursor.execute("select * from usuarios where idusuario=%s", (user_id,))
         usuario = cursor.fetchone()
         cursor.close()
         conn.close()
         if usuario:
             return User(usuario["idusuario"], usuario["email"], usuario["password"])
         return None
+
